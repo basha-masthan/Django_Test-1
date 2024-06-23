@@ -1,17 +1,65 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/bm.css' %}">
+    <script src="{% static 'js/bm.js' %}"></script>
+  <style>
 
-</head>
+      body{
+        width: 100vw;
+        height: 100vh;
+        background-image: url("{% static 'img/bg1.jpg' %}");
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        
+      }
+  </style>
 
-<body>
-
+    </head>
+<body id="bg1">
+    <h1 class="alert text-white text-center  mt-3 container m-auto">Welcome <span class="alert-info text-dark alert">{{name}}</span> </h1>
+    <div class="container align-content-center justify-content-center h-75">
+        <div class="row  ">
+            <div class="col-lg-5 align-content-center justify-content-center">
+                <p class="p-2 text-white ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio accusamus, omnis rem quos mollitia maiores aut reprehenderit esse perspiciatis, maxime nisi. Vel facere eveniet eligendi itaque assumenda. Soluta, deleniti! Error labore nihil consequatur, officia enim officiis fugit debitis eos soluta dolores animi a, aliquid aperiam quaerat rerum ratione voluptatem dolore accusantium explicabo iure nam perspiciatis. Voluptates nesciunt autem tenetur necessitatibus, ab esse quisquam reiciendis officiis odit reprehenderit ipsum ad provident, ullam corporis optio enim dicta magni, cum quis! Expedita id ducimus nemo nostrum omnis dicta sapiente error blanditiis. Voluptas distinctio ex ad sequi adipisci vel ea harum, quae ducimus eaque?</p>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-5">
+                <img class="w-75" src="{% static "img/man-2.png" %}" alt="" >
+            </div>
+        </div>
+    </div>
+    <div class="col container m-auto text-white align-content-center justify-content-center">
+        <form action="/Forward/" method="POST">
+            {% csrf_token %}
+        <div class="row m-auto">
+                <div class="col-lg-6"></div>
+            <div class="col-lg-4">
+                    <input type="text" class="bg-transparent text-white alert w-100 border" placeholder="example@gmail.com"  name="mail" id="mail" required>
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" class="btn btn-outline-info alert border" value="Submit">
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="container  h-75">
+        <div class="row  align-content-center justify-content-center">
+            <div class="col-lg-5">
+               <img src="{% static "img/man-1.png" %}" alt="" srcset="" width="80%">
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-5 align-content-center justify-content-center">
+                <p class="p-2 text-white alert">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores praesentium veniam earum ratione voluptatibus delectus sed dolorum omnis, quis sapiente, est, autem saepe nesciunt placeat aliquid natus distinctio quae inventore quia? Et sit vel libero reprehenderit ea! Quaerat natus aspernatur sunt. Dicta autem expedita dolores quos earum totam fugit ipsum qui illum labore ducimus perspiciatis nobis consequuntur quaerat, animi, molestiae voluptates voluptatibus, suscipit nemo architecto! Voluptas, consectetur dignissimos? Libero voluptatem reprehenderit distinctio esse minima expedita quos rem dolores inventore saepe tempora pariatur ratione facilis eius, eos quas suscipit atque recusandae exercitationem impedit error. Odio ipsum, sed cupiditate laboriosam fugiat obcaecati!
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>

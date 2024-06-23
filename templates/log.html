@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bm.css' %}">
+    <script src="{% static 'js/bm.js' %}"></script>
+    <style>
+        body{
+            background-image: url({% static 'img/bg-1.png' %});
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-light" >
+    <h2 class="alert text-center text-danger display-2">Boom Boooooommmmmm</h2>
+    <form action="home/" method="POST">
+        {% csrf_token %}
+        <div class="m-auto col-md-5">
+            <input class="form-control col-md-5 text-center" type="text" name="name" id="name" placeholder="Enter Your Name" required>
+        </div>
+        <div class="text-center alert" style="width: 100vw;">
+            <!-- <input class="p-2 " type="button" value="Submit"> -->
+            <input class="pl-5 btn btn-danger" type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>
