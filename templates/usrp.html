@@ -69,13 +69,13 @@
         
       <div  class="bb1 btn col-4 shadow alert border bg-white text-dark text-center m-auto" style="height: 20pc;">
         
-          <form  action="/delcard/" method="post">
+          <form  action="/delcard/" method="post" >
             {% csrf_token %}
             <input type="hidden" name="cname" value="{{course.name}}">
-            <input  type="submit" class="btn btn-primary" value="Remove">
+            <input  type="submit" class="btn btn-danger float-start" value="Remove">
           </form>
      
-        <div class="txt"><p class="text-center alert display-6">{{course.name}}</p></div>
+        <div class="txt"><p class="text-center alert p-4 mt-5 display-6">{{course.name}}</p></div>
         <div class="img"></div>
 
         <form  action="/payment/" method="post">
@@ -96,7 +96,7 @@
       <script>
         function payment(){
           window.location.href = "/payment/";
-        }
+        } 
       </script>
     </div>
   </div>

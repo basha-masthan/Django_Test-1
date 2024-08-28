@@ -120,7 +120,7 @@ def usrcart_add(request):
         course = request.POST.get('cname')
         r= Course.objects.get(name=course)
         k=usrData.objects.get(id=usrid)
-        d= cart(usrid=k.id,course=course,price=r.price)
+        d= cart(usrid=k.id,course=course)
         d.save()
         return HttpResponse("Course Added")
     return redirect('/cart/')
@@ -129,8 +129,16 @@ def logout_1(request):
     # logout(request)
     return redirect('/login/') 
 
+def payment(request):
+    user = request.session['usr']
+    usrs = usrData.objects.get(usr=user)
+    r=Course.objects.get(name=usrs.cors)
+    rr = r.name
+    return render(request,'payment.html',{'course':rr})
+
 def delcard(request):
     carts = cart.objects.get(course=request.POST.get('cname'))
+
     carts.delete()
     return HttpResponse("Card Deleted")
 
