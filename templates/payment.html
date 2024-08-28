@@ -1,0 +1,40 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/bm.css" %}">
+    <script src="{% static "js/bm.js" %}"></script>
+</head>
+<body>
+    
+
+    <div class="container border align-content-center" style="height: 80vh;">
+        <div class="row m-auto  " >
+            <div class="col-md-4 text-center align-content-center align-content-center alert alert-info" style="height: 25pc;">
+                <h1>{{course}} Basic Plan</h1>
+                Free Trail At Starts from 0/- <br>
+                Basic Information <br>
+                Includes Specified Mock tests <br>
+                <button class="btn btn-primary mt-5" value="submit">Enter Into the Course</button>
+            </div>
+            <div class="col"></div>
+            <div class="col-md-4 align-content-center alert alert-dark text-center" style="height: 25pc;">
+                <h1>{{course}} Premium Plan</h1>
+                <span class="fw-bold">Premium starts from 299/- <br></span>
+                <span class="p-2 ">
+                Includes Unlimited Mock tests <br>
+                Unlimited Video Lectures <br>
+                Unlimited Quizzes <br>
+                Unlimited Notes <br>
+                Unlimited Projects <br>
+                </span>
+                <button class="btn btn-success mt-5" value="submit">Proceed to Payment</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

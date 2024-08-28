@@ -10,7 +10,9 @@
 </head>
 <body>
     <div class="box">
+        <h3><a href="/">HOME</a> </h3>
         <h2 class="text-center alert alert-info container ">Login</h2>
+        <!-- <p class="text-center">{{msg}}</p> -->
         <div class="container col-md-8">                
             <form action="/login/" method="post" >
                 {% csrf_token %}
@@ -25,11 +27,7 @@
         </div>
 
     </div>
-    <div class="data container">
-        {% for usr in usrs %}
-        User name:{{usr.usr}} || Password : {{usr.pswd}} <br/>
-        {% endfor %}
-    </div>
+   
     <script>
         
     </script>

@@ -32,14 +32,22 @@
     <div class="nav container p-2 alert alert-primary opacity-25">
       <div class="col">
         <div class="logo">
-          <h2 class="text-dark fw-bold">B2B Tech Solutions</h2>
+          <h2 class="text-dark fw-bold">EDU Pro Solutions</h2>
         </div>
       </div>
-      <div class="float-end">
-        <form action="/usredit/" method="post">
+      <div class="float-end row">
+        <div class="col">
+          <form action="/usredit/" method="post">
+            <input type="hidden" name="usermail" value="{{user.email}}">
+            <div class="px-4 mt-1 bg-primary border border-white btn" type="submit" >User</div>
+          </form>
+        </div>
+        <div class="col"><form action="/logout/" method="post">
+          {% csrf_token %}
           <input type="hidden" name="usermail" value="{{user.email}}">
-          <div class="px-4 mt-1 bg-primary border border-white btn" type="submit" >User</div>
-        </form>
+          <input class="px-4 mt-1 bg-white border border-white btn" type="submit" value="Logout" >
+          <!-- <div class="px-4 mt-1 bg-white border border-white btn" type="submit" >Logout</div> -->
+        </form></div>
       </div>
     </div>
 
@@ -47,24 +55,48 @@
       <h1 class="navbar-brand  text-center alert">Welcome Mr.{{user.fname}} {{user.lname}}</h1>
      
       <div class="bb2 float-end">
-        <div class="btn text-white bg-primary">
-          Add Course +
+        <div class="text-white bg-primary">
+          <form action="/cart/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{user.email}}">
+            <input type="submit" class="btn btn-primary" value="Add Course +">
+          </form>
         </div>
       </div>
 
       <!-- Course Card of USER -->
-      <div class="bb1 btn col-4 shadow alert border bg-white text-dark text-center m-auto" style="height: 20pc;">
-        <div class="txt"><p class="text-center alert display-6">{{user.cors}}</p></div>
+  
+        
+      <div  class="bb1 btn col-4 shadow alert border bg-white text-dark text-center m-auto" style="height: 20pc;">
+        
+          <form  action="/delcard/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="cname" value="{{course.name}}">
+            <input  type="submit" class="btn btn-primary" value="Remove">
+          </form>
+     
+        <div class="txt"><p class="text-center alert display-6">{{course.name}}</p></div>
         <div class="img"></div>
+
+        <form  action="/payment/" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="course" value="{{course.name}}">
+          <input  type="submit" class="btn btn-primary" value="Go to Course">
+        </form>
+
+
+
         <!-- <div class="info"><p>{{course.info}}</p></div>
         <div class="price"><p>{{course.price}} </p></div> -->
       </div>
-      
+
       <!-- Add Course -->
 
 
       <script>
-
+        function payment(){
+          window.location.href = "/payment/";
+        }
       </script>
     </div>
   </div>

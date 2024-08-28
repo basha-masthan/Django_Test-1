@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .models import Course,usrData
-
+from .models import Course,usrData,cart
+import random
+from django.contrib.auth import logout
 
 def register(request):
     course = Course.objects.all()
@@ -16,8 +17,9 @@ def home(request):
 
 
 def usrpage(request):
+    usercourse = cart.objects.all()
+    dbcourse = Course.objects.all()
     if request.method == 'POST':
-        usrid = request.POST.get('usrid')
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
         mail = request.POST.get('gmail')
@@ -28,28 +30,39 @@ def usrpage(request):
         course_data = request.POST.get('course')
         usr = request.POST.get('usrname')
         pswd = request.POST.get('password')
-
-        en = usrData(usrid=usrid,fname=fname, lname=lname,email=mail,mobile=mobile,gender=gender,address=address,edu=edu,cors=course_data,usr=usr,pswd=pswd)
+        en = usrData(fname=fname, lname=lname,email=mail,mobile=mobile,gender=gender,address=address,edu=edu,cors=course_data,usr=usr,pswd=pswd)
         en.save()
+        
         return redirect('/login/')
     pass
     return render(request,'ind1.html')
 
 def login(request):
     usrs = usrData.objects.all()
-    for user in usrs:
-        if user.usr == request.POST.get('username'):
-            if user.pswd == request.POST.get('pswd'):
-                # return redirect('/usrp/')
-                r=Course.objects.get(name=user.cors)
-                # return redirect('/usrp/')
-                return render(request,'usrp.html',{'user': user,'course': r})
+    try:
+        usr = usrData.objects.get(usr=request.POST.get('username'),pswd=request.POST.get('pswd'))
+        # r=Course.objects.get(name=usr.cors)
+        # d = cart(usrid=usr.id,course=r.name,price=r.price)
+        # try:
+        #     t=cart.objects.get(course=usr.cors)
+        # except Exception as e:
+        #     d.save()
+        carts = cart.objects.all()
+        request.session['usr']=usr.usr
+        return redirect('/usrp')
+
+        # return render(request,'usrp.html',{'user': usr,'course': r,'cart':carts})
+    except Exception as e:
+        pass    
     return render(request,'login.html',{'usrs':usrs,'msg':"Invalid username or password"})
 
 
-@login_required
+
 def usrp(request):
-    return render(request,'usrp.html')
+    user = request.session['usr']
+    usrs = usrData.objects.get(usr=user)
+    r=Course.objects.get(name=usrs.cors)
+    return render(request,'usrp.html',{'user':usrs,'course': r})
 
 
 def usredit(request):
@@ -87,7 +100,42 @@ def usredit(request):
 
 
 
+def usr_cart(request):
+    # cart = cart.objects.get(usrid=request.POST.get('usrid'))
+    itms = Course.objects.all()
+    if request.method == 'POST':
+        usrid = request.POST.get('user_id')
+        usr = usrData.objects.get(email=usrid)
+        return render(request,'usrcart.html',{'user':usr,'itms': itms,'cart':cart})
+
+    return render(request,'usrp.html')
 
 
-def logout(requset):
-    return redirect('/')
+def usrcart_add(request):
+    itms = Course.objects.all()
+    usrs = usrData.objects.all()
+    carts = cart.objects.all()
+    if request.method == 'POST':
+        usrid = request.POST.get('usrid')
+        course = request.POST.get('cname')
+        r= Course.objects.get(name=course)
+        k=usrData.objects.get(id=usrid)
+        d= cart(usrid=k.id,course=course,price=r.price)
+        d.save()
+        return HttpResponse("Course Added")
+    return redirect('/cart/')
+    
+def logout_1(request):
+    # logout(request)
+    return redirect('/login/') 
+
+def delcard(request):
+    carts = cart.objects.get(course=request.POST.get('cname'))
+    carts.delete()
+    return HttpResponse("Card Deleted")
+
+def adminpage(request):
+    users = usrData.objects.all()
+    return render(request,'admin/mb.html',{'users': users})
+
+
