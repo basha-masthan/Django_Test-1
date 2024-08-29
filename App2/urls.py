@@ -13,4 +13,5 @@ urlpatterns = [
     path('cartadd/',usrcart_add),
     path('mb/',adminpage),
     path('delcard/',delcard),
+    path('usrgd/',usrgd),
 ]

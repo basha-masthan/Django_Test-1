@@ -136,6 +136,14 @@ def payment(request):
     rr = r.name
     return render(request,'payment.html',{'course':rr})
 
+
+def usrgd(request):
+    user = request.session['usr']
+    usrs = usrData.objects.get(usr=user)
+    r=Course.objects.get(name=usrs.cors)
+    rr = r.name
+    return render(request,'usrgd.html',{'user':usrs,'course': rr})
+
 def delcard(request):
     carts = cart.objects.get(course=request.POST.get('cname'))
 
