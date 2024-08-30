@@ -3,6 +3,8 @@ from .views import *
 
 urlpatterns = [
     path('',home),
+    path('about/',about),
+    path('contact/',contact),
     path('register/',register),
     path('usrpage/',usrpage),
     path('login/',login),
@@ -14,4 +16,6 @@ urlpatterns = [
     path('mb/',adminpage),
     path('delcard/',delcard),
     path('usrgd/',usrgd),
+    path('mb/',adminpage),
+    path('mb/course/',mb_course),
 ]

@@ -15,6 +15,11 @@ def home(request):
     itms = Course.objects.all()
     return render(request, 'ind1.html',{'itms':itms})
 
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
 
 def usrpage(request):
     usercourse = cart.objects.all()
@@ -47,7 +52,7 @@ def login(request):
         #     t=cart.objects.get(course=usr.cors)
         # except Exception as e:
         #     d.save()
-        carts = cart.objects.all()
+        # _carts = cart.objects.all()
         request.session['usr']=usr.usr
         return redirect('/usrp')
 
@@ -152,6 +157,11 @@ def delcard(request):
 
 def adminpage(request):
     users = usrData.objects.all()
-    return render(request,'admin/mb.html',{'users': users})
+    courses = Course.objects.all()
+    return render(request,'admin/dashboard.html',{'users': users,'course': courses,'k':0})
 
+def mb_course(request):
+    users = usrData.objects.all()
+    courses = Course.objects.all()
+    return render(request,'admin/mb_course.html',{'users': users,'course': courses})
 

@@ -7,10 +7,13 @@
     <title>EDU - Register</title>
     <link rel="stylesheet" href="{% static "css/bm.css" %}">
     <script src="{% static "js/bm.js" %}"></script>
+    <style>
+        
+    </style>
 </head>
 <body>
     <div class="box">
-        <h1 class="alert text-center">Register for a {{tid}}</h1>
+        <h1 class="alert text-center">New User Registration </h1>
         <form method="post" action="/usrpage/">
             {% csrf_token %}
             <div class="container">
