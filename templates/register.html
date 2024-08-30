@@ -24,19 +24,19 @@
                         </div>
                         <div class="col-8 row" >
                             <div class="col-6 ">
-                                <input type="text" class="form-control bg-dar" placeholder="First Name" name="fname">
+                                <input type="text" class="form-control bg-dar" placeholder="First Name" name="fname" required>
                             </div>
                             <div class="col-6 ">
-                                <input type="text" class="form-control bg-dar" placeholder="Last Name" name="lname">
+                                <input type="text" class="form-control bg-dar" placeholder="Last Name" name="lname" required>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col-2 text-center">
-                            <label for="name" class="form-label">Gmail</label>
+                            <label for="name" class="form-label" >Gmail</label>
                         </div>
                         <div class="col-8">
-                            <input type="text" class="form-control bg-dar" name="gmail" placeholder="E-Mail Address">
+                            <input type="text" class="form-control bg-dar" name="gmail" placeholder="E-Mail Address" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -44,7 +44,7 @@
                             <label for="name" class="form-label">Mobile</label>
                         </div>
                         <div class="col-8">
-                            <input type="text" class="form-control bg-dar" name="mobile" placeholder="Phone Number">
+                            <input type="text" class="form-control bg-dar" name="mobile" placeholder="Phone Number" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -52,7 +52,7 @@
                             <label for="gender" class="form-label">Gender</label>
                         </div>
                         <div class="col-8">
-                            <select name="gender" id="" class="form-control">
+                            <select name="gender" id="" class="form-control" required>
                                 <option value="#">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -65,7 +65,7 @@
                             <label for="name" class="form-label">Address</label>
                         </div>
                         <div class="col-8">
-                            <input type="text" class="form-control bg-dar" name="address" placeholder="Address">
+                            <input type="text" class="form-control bg-dar" name="address" placeholder="Address" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -73,7 +73,7 @@
                             <label for="name" class="form-label">Qualification</label>
                         </div>
                         <div class="col-8">
-                            <select name="edu" id="" class="form-control">
+                            <select name="edu" id="" class="form-control" required
                                 <option value="#">Select Qualification</option>
                                 <option value="10th">10th</option>
                                 <option value="12th">12th</option>
@@ -88,7 +88,7 @@
                             <label for="name" class="form-label">Course</label>
                         </div>
                         <div class="col-8">
-                            <select name="course" id="" class="form-control">
+                            <select name="course" id="" class="form-control" required>
                                 <option value="#">Select Course</option>
                                 {% for cours in course %}
                                 <option value="{{cours.name}}">{{cours.name}}</option>
@@ -119,7 +119,7 @@
                             <label for="name" class="form-label">PASSWORD</label>
                         </div>
                         <div class="col-8">
-                            <input type="password" class="form-control bg-dar" name="password" placeholder="Enter Password">
+                            <input type="password" class="form-control bg-dar" name="password" placeholder="Enter Password" required>
                         </div>
                     </div>
                     <div class="col-3  text-center text-center m-auto">

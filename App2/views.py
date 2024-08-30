@@ -165,3 +165,45 @@ def mb_course(request):
     courses = Course.objects.all()
     return render(request,'admin/mb_course.html',{'users': users,'course': courses})
 
+
+def mb_users(request):
+    users = usrData.objects.all()
+    courses = Course.objects.all()
+    return render(request,'admin/mb_user.html',{'users': users,'course': courses})
+
+
+def modify(request):
+    operation=request.GET['operation']
+    name=request.GET['name']
+    username=request.GET['username']
+    password=request.GET['password']
+    gender=request.GET['gender']
+    mobile=request.GET['mobile']
+    email=request.GET['email']
+    desig=request.GET['desig']
+    course=request.GET['course']
+    graduation=request.GET['graduation']
+    address=request.GET['address']
+    pincode=request.GET['pincode']
+    r=usrData.objects.get(email=email)
+    if operation=="update":
+        r.name=name
+        r.username=username
+        r.password=password
+        r.gender=gender
+        r.mobile=mobile
+        r.email=email
+        r.desig=desig
+        r.course=course
+        r.graduation=graduation
+        r.address=address
+        r.pincode=pincode
+        r.save()
+    else:
+        usrData.delete(r)
+    users=usrData.objects.all()
+    return render(request,'admin/mb_user.html',{"users":users})
+
+def viewusers(request):
+    users=usrData.objects.all()
+    return render(request,'admin/mb_user.html',{"users":users})
