@@ -14,10 +14,9 @@ class AdminData(models.Model):
     password = models.CharField(max_length=30)
 
 class usrData(models.Model):
-    id = models.AutoField(primary_key=True)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
-    email = models.EmailField( max_length=30,unique=True)
+    email = models.EmailField( max_length=30,unique=True,primary_key=True)
     mobile = models.IntegerField()
     gender = models.CharField(max_length=10)
     edu = models.CharField(max_length=40)

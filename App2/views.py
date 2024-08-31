@@ -7,6 +7,18 @@ from .models import Course,usrData,cart
 import random
 from django.contrib.auth import logout
 
+
+
+    # My OTP Code 
+
+import random
+import smtplib
+from email.message import EmailMessage
+
+otp_list=[]
+
+ 
+
 def register(request):
     course = Course.objects.all()
     return render(request,'register.html',{'course':course})
@@ -37,32 +49,52 @@ def usrpage(request):
         pswd = request.POST.get('password')
         en = usrData(fname=fname, lname=lname,email=mail,mobile=mobile,gender=gender,address=address,edu=edu,cors=course_data,usr=usr,pswd=pswd)
         en.save()
-        
         return redirect('/login/')
     pass
     return render(request,'ind1.html')
 
 def login(request):
     usrs = usrData.objects.all()
+    usr=request.POST.get('username')
+    pswd=request.POST.get('pswd')
+ 
     try:
         usr = usrData.objects.get(usr=request.POST.get('username'),pswd=request.POST.get('pswd'))
-        # r=Course.objects.get(name=usr.cors)
-        # d = cart(usrid=usr.id,course=r.name,price=r.price)
-        # try:
-        #     t=cart.objects.get(course=usr.cors)
-        # except Exception as e:
-        #     d.save()
-        # _carts = cart.objects.all()
         request.session['usr']=usr.usr
-        return redirect('/usrp')
-
-        # return render(request,'usrp.html',{'user': usr,'course': r,'cart':carts})
+        otp_list.clear()
+        otp = random.randint(10000,99999)
+        otp_list.append(otp)
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login('bashamasthan31@gmail.com','dygq eorh yspf jhbx')
+        msg = EmailMessage()
+        msg['From'] = 'EDU Pro Solutions'
+        msg['Subject'] = 'Registration OTP Code'
+        msg.set_content(f"Your One Time Password is: {otp} \n Thank you for Choosing Our Platform to Improve Your Knowledge")
+        msg['To'] = usr.email
+        server.send_message(msg)
+        print(otp)
+        return redirect('/otp/')
     except Exception as e:
-        pass    
-    return render(request,'login.html',{'usrs':usrs,'msg':"Invalid username or password"})
+        pass
+    return render(request,'login.html',{'msg1':"Login Failed"})
 
 
 
+def uotp(request):
+    print("Uotp Function")
+    return render(request,'log_auth.html')
+
+def Auth_otp(request):
+    otp=otp_list[0]
+    
+    if request.method=="POST":
+        otp_entered = request.POST.get('uotp')
+        if int(otp_entered)==int(otp):
+            return redirect('/usrp/')
+        else:
+            return render(request,'log_auth.html',{'msg2':"Incorrect OTP"})
+    return redirect('/login/')
 def usrp(request):
     user = request.session['usr']
     usrs = usrData.objects.get(usr=user)
@@ -207,3 +239,6 @@ def modify(request):
 def viewusers(request):
     users=usrData.objects.all()
     return render(request,'admin/mb_user.html',{"users":users})
+
+
+

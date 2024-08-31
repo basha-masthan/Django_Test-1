@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="{% static "css/bm.css" %}">
     <script src="{% static "js/bm.js" %}"></script>
     <style>
-        
+        input{
+            outline: hidden;
+        }
     </style>
 </head>
 <body>
@@ -36,7 +38,10 @@
                             <label for="name" class="form-label" >Gmail</label>
                         </div>
                         <div class="col-8">
+                            
+                        <div class="col">
                             <input type="text" class="form-control bg-dar" name="gmail" placeholder="E-Mail Address" required>
+                        </div>
                         </div>
                     </div>
                     <div class="mb-3 row">

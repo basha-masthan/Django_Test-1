@@ -4,10 +4,13 @@ from .views import *
 urlpatterns = [
     path('',home),
     path('about/',about),
+    path('usredit/',usredit),
     path('contact/',contact),
+    path('otp/',uotp),
     path('register/',register),
     path('usrpage/',usrpage),
     path('login/',login),
+    path('Auth_otp/',Auth_otp),
     path('usrp/',usrp),
     path('logout/',logout_1),
     path('cart/',usr_cart),
